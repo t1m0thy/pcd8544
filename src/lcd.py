@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Code picked up Raspberry Pi forums  
+# Code picked up Raspberry Pi forums
 # http://www.raspberrypi.org/phpBB3/viewtopic.php?p=301522#p301522
 #
 import time
@@ -25,7 +25,7 @@ RST  = 5 # gpio pin 18 = wiringpi no. 5 (BCM 24)
 LED  = 1 # gpio pin 12 = wiringpi no. 1 (BCM 18)
 
 # SPI connection
-SCE  = 10 # gpio pin 24 = wiringpi no. 10 (CE0 BCM 8) 
+SCE  = 10 # gpio pin 24 = wiringpi no. 10 (CE0 BCM 8)
 SCLK = 14 # gpio pin 23 = wiringpi no. 14 (SCLK BCM 11)
 DIN  = 12 # gpio pin 19 = wiringpi no. 12 (MOSI BCM 10)
 
@@ -36,13 +36,13 @@ ORIGINAL_CUSTOM = FONT['\x7f']
 
 def bit_reverse(value, width=8):
   result = 0
-  for _ in xrange(width):
+  for _ in range(width):
     result = (result << 1) | (value & 1)
     value >>= 1
 
   return result
 
-BITREVERSE = map(bit_reverse, xrange(256))
+BITREVERSE = map(bit_reverse, range(256))
 
 spi = spidev.SpiDev()
 
@@ -69,7 +69,7 @@ def init(dev=(0,0),speed=4000000, brightness=256, contrast=CONTRAST):
     else:
         wiringpi.pinMode(LED, 1)
         wiringpi.digitalWrite(LED, OFF)
- 
+
 
 
 def lcd_cmd(value):
@@ -162,8 +162,8 @@ def load_bitmap(filename, reverse=False):
     mask = 0x00 if reverse else 0xff
     gotoxy(0, 0)
     with open(filename, 'rb') as bitmap_file:
-        for x in xrange(6):
-          for y in xrange(84):
+        for x in range(6):
+          for y in range(84):
             bitmap_file.seek(0x3e + y * 8 + x)
             lcd_data(BITREVERSE[ord(bitmap_file.read(1))] ^ mask)
 

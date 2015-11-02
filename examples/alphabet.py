@@ -11,8 +11,9 @@ ON, OFF = [1, 0]
 try:
     lcd.init()
     lcd.cls()
+    lcd.set_brightness(500)
     lcd.backlight(ON)
-    for i in xrange(32, 116):
+    for i in range(32, 116):
         lcd.display_char(chr(i))
     time.sleep(10)
 except KeyboardInterrupt:
